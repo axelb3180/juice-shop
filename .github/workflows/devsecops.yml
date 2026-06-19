@@ -12,14 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '20' # Plus besoin de la ligne cache: 'npm'
+          
       - name: Install dependencies
         run: npm install
-      # --- AJOUTEZ CETTE ÉTAPE ---
-      - name: Build / Prepare Application
-        run: npm run build # ou 'npm run setup' selon la version exacte de Juice Shop
-      # ---------------------------
+        
       - name: Run unit tests
         run: npm test
