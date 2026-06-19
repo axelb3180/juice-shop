@@ -17,10 +17,10 @@ jobs:
           node-version: '20'
       - name: Install dependencies
         run: npm install
-      - name: Build application
-        run: npm run build
       - name: Run unit tests
-        run: npm run test:api
+        # On trouve tous les fichiers .test.ts et on les passe directement à node --test
+        run: |
+          node --import ./test/api/helpers/test-env.mjs --import tsx --test --test-force-exit $(find test/api -name "*.test.ts")
   sast:
     runs-on: ubuntu-latest
     needs: build
